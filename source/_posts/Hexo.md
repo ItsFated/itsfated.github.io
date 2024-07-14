@@ -1,5 +1,6 @@
 ---
 title: Hexo
+description: 记录一次搭建Hexo博客系统的配置
 date: 2024-07-12 13:00:58
 tags:
   - 博客
@@ -167,4 +168,37 @@ hexo clean
 hexo generate
 hexo server
 ```
- 
+
+# 配置[Butterfly](https://github.com/jerryc127/hexo-theme-butterfly)评论系统
+
+[**Valine**](https://valine.js.org/)是一款快速、简洁且高效的无后端评论系统，用作Hexo的评论系统非常简单快捷，而且有很多博主也用的是它：[hexo - Next 主题添加评论功能](https://yashuning.github.io/2018/06/29/hexo-Next-%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA%E5%8A%9F%E8%83%BD/)，[国光](https://www.sqlsec.com/)……
+
+[**Giscus**](https://giscus.app/zh-CN)是利用 [GitHub Discussions](https://docs.github.com/en/discussions) 实现的评论系统，让访客借助 GitHub 在你的网站上留下评论。
+按照[官网](https://giscus.app)步骤进行：
+1. 该仓库是[公开的](https://docs.github.com/en/github/administering-a-repository/managing-repository-settings/setting-repository-visibility#making-a-repository-public)，否则访客将无法查看 discussion。
+2. [giscus](https://github.com/apps/giscus) app 已安装，否则访客将无法评论和回应。
+3. Discussions 功能已[在你的仓库中启用](https://docs.github.com/en/github/administering-a-repository/managing-repository-settings/enabling-or-disabling-github-discussions-for-a-repository)。
+
+修改配置文件`_config.butterfly.yml`
+```yaml
+comments:
+  use: Giscus # Valine,Disqus
+giscus:
+  repo: itsfated/itsfated
+  repo_id: R_kgDOMVetDQ
+  category_id: DIC_kwDOMVetDc4Cgx1_
+  theme:
+    light: light
+    dark: dark
+  option:
+    data-category: General
+    data-mapping: title
+    data-strict: 0
+    data-reactions-enabled: 1
+    data-emit-metadata: 0
+    data-input-position: bottom
+    data-theme: preferred_color_scheme
+    data-lang: zh-CN
+    crossorigin: anonymous
+```
+
