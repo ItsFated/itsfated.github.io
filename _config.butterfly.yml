@@ -3,7 +3,7 @@
 # --------------------------------------
 
 nav:
-  logo: # image
+  logo: /img/avatar.jpg
   display_title: true
   fixed: false # fixed navigation bar
 
@@ -44,7 +44,7 @@ favicon: /img/favicon.png
 
 # Avatar (頭像)
 avatar:
-  img: https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png
+  img: /img/avatar.jpg
   effect: false
 
 # Disable all banner image
@@ -54,7 +54,7 @@ disable_top_img: false
 index_img:
 
 # If the banner of page not setting, it will show the top_img
-default_top_img:
+default_top_img: /img/banner.jpg
 
 # The banner image of archive page
 archive_img:
@@ -231,10 +231,10 @@ aside:
       enable: true
       icon: fab fa-github
       text: Follow Me
-      link: https://github.com/xxxxxx
+      link: https://github.com/itsfated
   card_announcement:
     enable: true
-    content: This is my Blog
+    content: 没有公告
   card_recent_post:
     enable: true
     limit: 5 # if set 0 will show all

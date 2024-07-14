@@ -10,191 +10,161 @@ tags:
 categories:
   - 记录
 ---
- 
-  
-- # 官网：[hexo](https://hexo.io/zh-cn/)
-  Github：[hexo](https://github.com/hexojs/hexo)  
-  
-- # 部署记录：[文档](https://hexo.io/zh-cn/docs/)
 
-	- [Install NodeJS](https://nodejs.org/en/download/package-manager)
-	    
-  
-	  ```shell
-	  # 不用Root
-	  # installs fnm (Fast Node Manager)
-	  curl -fsSL https://fnm.vercel.app/install | bash
-	  # download and install Node.js
-	  fnm use --install-if-missing 22
-	  # verifies the right Node.js version is in the environment
-	  node -v # should print `v22.4.1`
-	  # verifies the right NPM version is in the environment
-	  npm -v # should print `10.8.1`
-	  ```
 
-	- 安装Hexo
-	    
-  
-	  ```shell
-	  # 全局
-	  npm install -g hexo-cli
-	  # 局部
-	  npm install hexo
-	  ```
+# 官网：[hexo](https://hexo.io/zh-cn/)
+Github：[hexo](https://github.com/hexojs/hexo)
+# 部署记录：[文档](https://hexo.io/zh-cn/docs/)
+[Install NodeJS](https://nodejs.org/en/download/package-manager)
+```shell
+# 不用Root
+# installs fnm (Fast Node Manager)
+curl -fsSL https://fnm.vercel.app/install | bash
+# download and install Node.js
+fnm use --install-if-missing 22
+# verifies the right Node.js version is in the environment
+node -v # should print `v22.4.1`
+# verifies the right NPM version is in the environment
+npm -v # should print `10.8.1`
+```
+安装Hexo
+```shell
+# 全局
+npm install -g hexo-cli
+# 局部
+npm install hexo
+```
+Hello World
+```shell
+# 创建一个项目
+hexo init demo
+cd demo
+# 安装依赖
+npm install
+# 生成页面，创建项目会自带一个hello_world.md页面
+hexo generate
+# 运行访问：http://localhost:4000
+hexo server
+```
+# [在 GitHub Pages 上部署 Hexo](https://hexo.io/zh-cn/docs/github-pages)
+GitHub上找一个Hexo仓库（可以是自己的用户名仓库），下载到本地安装`hexo-deployer-git`
+```shell
+# 安装：hexo-deployer-git
+npm install hexo-deployer-git --save
+git add .
+git commit -m "install hexo-deployer-git"
+```
+注意需要将GitHub仓库中的Pages改为Actions！！！再继续！！！
+修改 .github/workflows/pages.yml （创建新文件，Actions文件）
+```yaml
+name: Pages
 
-	- Hello World
-	    
-  
-	  ```shell
-	  # 创建一个项目
-	  hexo init demo
-	  cd demo
-	  # 安装依赖
-	  npm install
-	  # 生成页面，创建项目会自带一个hello_world.md页面
-	  hexo generate
-	  # 运行访问：http://localhost:4000
-	  hexo server
-	  ```
+on:
+  push:
+    branches:
+      - main # default branch
 
-- # [在 GitHub Pages 上部署 Hexo](https://hexo.io/zh-cn/docs/github-pages)
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # If your repository depends on submodule, please see: https://github.com/actions/checkout
+          submodules: recursive
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          # Examples: 20, 18.19, >=16.20.2, lts/Iron, lts/Hydrogen, *, latest, current, node
+          # Ref: https://github.com/actions/setup-node#supported-version-syntax
+          node-version: "22"
+      - name: Cache NPM dependencies
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-npm-cache
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache
+      - name: Install Dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+  deploy:
+    needs: build
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+```
+修改 _config.yml（部分）
+```yaml
+url: https://itsfated.github.io/itsfated
+deploy:
+  type: 'git'
+  repo: git@github.com:ItsFated/itsfated.git
+  branch: gh-pages
+```
+提交这两个文件的修改后，Github会自动执行Actions
+# 配置[Butterfly](https://github.com/jerryc127/hexo-theme-butterfly)主题
+参考：[Butterfly 安裝文檔(一) 快速開始](https://butterfly.js.org/posts/21cfbf15/)
 
-	- GitHub上找一个Hexo仓库（可以是自己的用户名仓库），下载到本地安装`hexo-deployer-git`
-	    
-  
-	  ```shell
-	  # 安装：hexo-deployer-git
-	  npm install hexo-deployer-git --save
-	  git add .
-	  git commit -m "install hexo-deployer-git"
-	  ```
-	  注意需要将GitHub仓库中的Pages改为Actions！！！再继续！！！  
-  
-	- 修改 .github/workflows/pages.yml （创建新文件，Actions文件）
-	    
-  
-	  ```yaml
-	  name: Pages
-	  
-	  on:
-	    push:
-	      branches:
-	        - main # default branch
-	  
-	  jobs:
-	    build:
-	      runs-on: ubuntu-latest
-	      steps:
-	        - uses: actions/checkout@v4
-	          with:
-	            token: ${{ secrets.GITHUB_TOKEN }}
-	            # If your repository depends on submodule, please see: https://github.com/actions/checkout
-	            submodules: recursive
-	        - name: Use Node.js 22
-	          uses: actions/setup-node@v4
-	          with:
-	            # Examples: 20, 18.19, >=16.20.2, lts/Iron, lts/Hydrogen, *, latest, current, node
-	            # Ref: https://github.com/actions/setup-node#supported-version-syntax
-	            node-version: "22"
-	        - name: Cache NPM dependencies
-	          uses: actions/cache@v4
-	          with:
-	            path: node_modules
-	            key: ${{ runner.OS }}-npm-cache
-	            restore-keys: |
-	              ${{ runner.OS }}-npm-cache
-	        - name: Install Dependencies
-	          run: npm install
-	        - name: Build
-	          run: npm run build
-	        - name: Upload Pages artifact
-	          uses: actions/upload-pages-artifact@v3
-	          with:
-	            path: ./public
-	    deploy:
-	      needs: build
-	      permissions:
-	        pages: write
-	        id-token: write
-	      environment:
-	        name: github-pages
-	        url: ${{ steps.deployment.outputs.page_url }}
-	      runs-on: ubuntu-latest
-	      steps:
-	        - name: Deploy to GitHub Pages
-	          id: deployment
-	          uses: actions/deploy-pages@v4
-	  ```
+第一步：修改 Hexo 根目錄下的 _config.yml，把主題改為 butterfly。
+```yaml
+theme: butterfly
+```
 
-	- 修改 _config.yml（部分）
-	    
-  
-	  ```yaml
-	  url: https://itsfated.github.io/itsfated
-	  deploy:
-	    type: 'git'
-	    repo: git@github.com:ItsFated/itsfated.git
-	    branch: gh-pages
-	  ```
+第二步：安装：`npm install hexo-renderer-pug hexo-renderer-stylus --save`
 
-	- 提交这两个文件的修改后，Github会自动执行Actions
+第三步：[使用替代主题配置文件](https://hexo.io/zh-cn/docs/configuration#%E4%BD%BF%E7%94%A8%E4%BB%A3%E6%9B%BF%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
+```shell
+find . -iname "_config*"
+cp ./node_modules/hexo-theme-butterfly/_config.yml _config.butterfly.yml
+# 后续修改主题可以直接修改 _config.butterfly.yml，如下配置开启404页面
+vi _config.butterfly.yml
+# 修改参考如下内容
+error_404:
+  enable: true
+  subtitle: "页面没有找到"
+```
 
-- # 配置[Butterfly](https://github.com/jerryc127/hexo-theme-butterfly)主题
-  参考：[Butterfly 安裝文檔(一) 快速開始](https://butterfly.js.org/posts/21cfbf15/)  
-  
-	- 第一步：修改 Hexo 根目錄下的 _config.yml，把主題改為 butterfly。
-	    
-  
-	  ```yaml
-	  theme: butterfly
-	  ```
+第四步：[Butterfly 安裝文檔(二) 主題頁面](https://butterfly.js.org/posts/dc584b87/#Page-Front-matter)，子页面（tags、categries等）
+```shell
+hexo new page tags
+vi source/tags/index.md
+# 修改参考如下内容
+---
+title: 标签
+date: 2018-01-05 00:00:00
+type: "tags"
+orderby: random
+order: 1
+---
+hexo new page categories
+vi source/categories/index.md
+# 修改参考如下内容
+---
+title: 分类
+date: 2018-01-05 00:00:00
+type: "categories"
+---
+```
 
-	- 第二步：安装：`npm install hexo-renderer-pug hexo-renderer-stylus --save`
-
-	- 第三步：[使用替代主题配置文件](https://hexo.io/zh-cn/docs/configuration#%E4%BD%BF%E7%94%A8%E4%BB%A3%E6%9B%BF%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6)
-	    
-  
-	  ```shell
-	  find . -iname "_config*"
-	  cp ./node_modules/hexo-theme-butterfly/_config.yml _config.butterfly.yml
-	  # 后续修改主题可以直接修改 _config.butterfly.yml，如下配置开启404页面
-	  vi _config.butterfly.yml
-	  # 修改参考如下内容
-	  error_404:
-	    enable: true
-	    subtitle: "页面没有找到"
-	  ```
-
-	- 第四步：[Butterfly 安裝文檔(二) 主題頁面](https://butterfly.js.org/posts/dc584b87/#Page-Front-matter)，子页面（tags、categries等）
-	    
-  
-	  ```shell
-	  hexo new page tags
-	  vi source/tags/index.md
-	  # 修改参考如下内容
-	  ---
-	  title: 标签
-	  date: 2018-01-05 00:00:00
-	  type: "tags"
-	  orderby: random
-	  order: 1
-	  ---
-	  hexo new page categories
-	  vi source/categories/index.md
-	  # 修改参考如下内容
-	  ---
-	  title: 分类
-	  date: 2018-01-05 00:00:00
-	  type: "categories"
-	  ---
-	  ```
-
-	- 第五步：重新部署
-	    
-  
-	  ```shell
-	  hexo clean
-	  hexo generate
-	  hexo server
-	  ```
+第五步：重新部署
+```shell
+hexo clean
+hexo generate
+hexo server
+```
  

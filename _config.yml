@@ -3,13 +3,13 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle: ''
-description: ''
-keywords:
-author: Jason Qiu
-language: en
-timezone: ''
+title: ItsFated
+subtitle: '超频和弦'
+description: '超频和弦的小站'
+keywords: ItsFated,超频和弦
+author: ItsFated
+language: zh-CN
+timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
