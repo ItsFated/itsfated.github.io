@@ -2,6 +2,13 @@
 title: Hexo
 description: 记录一次搭建Hexo博客系统的配置
 date: 2024-07-12 13:00:58
+cover: /img/banner.jpg
+keywords:
+  - 博客
+  - 网站
+  - Github
+  - NodeJS
+  - Hexo
 tags:
   - 博客
   - 网站
@@ -9,7 +16,7 @@ tags:
   - NodeJS
   - Hexo
 categories:
-  - 记录
+  - 建站
 ---
 
 

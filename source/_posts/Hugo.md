@@ -2,14 +2,21 @@
 title: Hugo
 date: 2024-07-14 09:51:03
 description: 记录一次搭建Hugo博客系统的配置
+cover: /img/banner.jpg
+keywords:
+  - 博客
+  - 网站
+  - Github
+  - Golang
+  - Hugo
 tags:
   - 博客
   - 网站
   - Github
   - Golang
-  - Hexo
+  - Hugo
 categories:
-  - 记录
+  - 建站
 ---
 
 
