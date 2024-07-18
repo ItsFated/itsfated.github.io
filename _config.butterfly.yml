@@ -33,7 +33,7 @@ code_word_wrap: false
 # formal:
 #   icon: link || the description || color
 social:
-  fas fa-rss: https://itsfated.github.io/itsfated/atom.xml || RSS || '#ec8505'
+  fas fa-rss: https://itsfated.github.io/atom.xml || RSS || '#ec8505'
   fab fa-github: https://github.com/itsfated || Github || '#1f2328'
   fas fa-envelope: mailto:itsfatedgoo@gmail.com || Email || '#c5221f'
 
