@@ -495,9 +495,9 @@ twikoo:
 # Giscus
 # https://giscus.app/
 giscus:
-  repo: itsfated/itsfated
-  repo_id: R_kgDOMVetDQ
-  category_id: DIC_kwDOMVetDc4Cgx1_
+  repo: itsfated/itsfated.github.io
+  repo_id: R_kgDOMYFGfQ
+  category_id: DIC_kwDOMYFGfc4Cg6Wi
   theme:
     light: light
     dark: dark
