@@ -4,5 +4,8 @@ db.json
 *.log
 node_modules/
 public/
+data/cert.key
+data/cert.pem
 .deploy*/
 _multiconfig.yml
+logs/

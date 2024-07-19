@@ -1,20 +1,14 @@
-## Hi there 👋
+# 个人博客
 
-<!--
-**ItsFated/itsfated** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+## 设计
+主要发布在两个地方：
+1. Github Pages：作为镜像。
+2. 自己的服务器：作为主站。
 
-Here are some ideas to get you started:
+## 部署
+- 部署到Github Pages：`./.github/workflows/pages.yml`。通过Hexo生成静态页面部署到Github Pages。
+- 部署到自己的服务器：`./.github/workflows/selfhost.yml`。实际上就是生成静态页面前替换域名，再将生成好的静态文件全部上传到服务器。
 
-- 🔭 I’m currently working on Android
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
-
-[![ItsFated's GitHub stats](https://github-readme-stats.vercel.app/api?username=ItsFated&show_icons=true&theme=transparent)](https://github.com/anuraghazra/github-readme-stats)
-[![ItsFated's Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=ItsFated&layout=donut&theme=tokyonight)](https://github.com/anuraghazra/github-readme-stats)
-[![ItsFated's github activity graph](https://github-readme-activity-graph.vercel.app/graph?username=ItsFated)](https://github.com/ashutosh00710/github-readme-activity-graph)
+## 脚本
+- `prepare.sh`：用于替换域名
+- `deploy.sh`：手动部署博客
