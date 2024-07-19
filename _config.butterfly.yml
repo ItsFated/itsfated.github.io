@@ -445,8 +445,8 @@ gitalk:
 # valine
 # https://valine.js.org
 valine:
-  appId: r7v5Dta9qBOJR4MATtThEYyC-gzGzoHsz # leancloud application app id
-  appKey: 1ItuIle3BPIh2prbwCJygLif # leancloud application app key
+  appId: 56a07c6f-5882-412b-b502-154543266a8b # leancloud application app id
+  appKey: ca126f51-86c5-41c5-a45c-7b584082fbcc # leancloud application app key
   avatar: monsterid # gravatar style https://valine.js.org/#/avatar
   serverURLs: https://avoscloud.com # This configuration is suitable for domestic custom domain name users, overseas version will be automatically detected (no need to manually fill in)
   bg: # valine background
@@ -496,8 +496,8 @@ twikoo:
 # https://giscus.app/
 giscus:
   repo: itsfated/itsfated.github.io
-  repo_id: R_kgDOMYFGfQ
-  category_id: DIC_kwDOMYFGfc4Cg6Wi
+  repo_id: da657660-f72f-401a-bfcc-f87aa68b9997
+  category_id: e7fcd585-59b1-4dac-a218-10dc1c585b10
   theme:
     light: light
     dark: dark

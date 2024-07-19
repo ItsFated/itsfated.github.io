@@ -1,0 +1,49 @@
+name: nodejs-npm-build
+
+on:
+  workflow_call:
+    inputs:
+      domain:
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: github-pages
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # If your repository depends on submodule, please see: https://github.com/actions/checkout
+          submodules: recursive
+      - name: Use Node.js 22.4.1
+        uses: actions/setup-node@v4
+        with:
+          # Examples: 20, 18.19, >=16.20.2, lts/Iron, lts/Hydrogen, *, latest, current, node
+          # Ref: https://github.com/actions/setup-node#supported-version-syntax
+          node-version: "22.4.1"
+      - name: Cache NPM dependencies
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-npm-cache
+          restore-keys: |
+            ${{ runner.OS }}-npm-cache
+      - name: Install Dependencies
+        run: npm install
+      - name: Build
+        env:
+          A2: ${{ secrets.A2 }}
+          A3: ${{ secrets.A3 }}
+          A4: ${{ secrets.A4 }}
+          A5: ${{ secrets.A5 }}
+        run: |
+          chmod +x prepare.sh
+          ./prepare.sh ${{ inputs.domain }} "$A2" "$A3" "$A4" "$A5"
+          npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: public-dir
+          path: public
+          overwrite: true
