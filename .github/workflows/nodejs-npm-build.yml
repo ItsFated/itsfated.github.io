@@ -44,6 +44,7 @@ jobs:
           npm run build
       - uses: actions/upload-artifact@v4
         with:
+          retention-days: 0
           name: public-dir
           path: public
           overwrite: true

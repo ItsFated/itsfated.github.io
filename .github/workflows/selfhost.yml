@@ -1,0 +1,39 @@
+name: Selfhost
+
+on:
+  push:
+    branches:
+      - main # default branch
+
+jobs:
+  call-nodejs-npm-build:
+    uses: ./.github/workflows/nodejs-npm-build.yml
+    with:
+      domain: itsfated.top
+    secrets: inherit
+  deploy:
+    needs: call-nodejs-npm-build
+    environment: github-pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download public dir
+        uses: actions/download-artifact@v4
+        with:
+          name: public-dir
+      - name: Deploy to remote server
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: "-avzr --delete"
+          SOURCE: ./
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
+          SCRIPT_BEFORE: |
+            whoami
+            ls -al
+          SCRIPT_AFTER: |
+            whoami
+            ls -al
+            echo $RSYNC_STDOUT
