@@ -10,6 +10,7 @@ jobs:
     uses: ./.github/workflows/nodejs-npm-build.yml
     with:
       domain: itsfated.top
+      need_a6: true
     secrets: inherit
   deploy:
     needs: call-nodejs-npm-build

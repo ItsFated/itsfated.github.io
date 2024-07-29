@@ -6,6 +6,10 @@ on:
       domain:
         required: true
         type: string
+      need_a6:
+        required: false
+        type: boolean
+        default: false
 
 jobs:
   build:
@@ -40,7 +44,11 @@ jobs:
           A5: ${{ secrets.A5 }}
         run: |
           chmod +x prepare.sh
-          ./prepare.sh ${{ inputs.domain }} "$A2" "$A3" "$A4" "$A5"
+          if [ "${{ inputs.need_a6 }}" = "true" ]; then
+            ./prepare.sh ${{ inputs.domain }} "$A2" "$A3" "$A4" "$A5" '${{ secrets.A6 }}'
+          else
+            ./prepare.sh ${{ inputs.domain }} "$A2" "$A3" "$A4" "$A5" ""
+          fi
           npm run build
       - uses: actions/upload-artifact@v4
         with:
