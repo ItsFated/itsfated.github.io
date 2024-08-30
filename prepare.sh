@@ -17,4 +17,8 @@ sed -i "s!348c3414-b358-4a50-be83-7d20fcb25770!$6!" _config.butterfly.yml
 # 关闭评论
 if [[ $7 == "no_comments" ]]; then
     sed -i "s/  use: valine,Giscus/  use: /" _config.butterfly.yml
+    sed -i "s/  text: true/  text: /" _config.butterfly.yml
+    sed -i "s/  lazyload: true/  lazyload: /" _config.butterfly.yml
+    sed -i "s/  count: true/  count: /" _config.butterfly.yml
+    sed -i "s/  card_post_count: true/  card_post_count: /" _config.butterfly.yml
 fi
