@@ -13,3 +13,8 @@ sed -i "s/e7fcd585-59b1-4dac-a218-10dc1c585b10/$5/" _config.butterfly.yml
 
 # 替换底部自定义字符串，如：备案号
 sed -i "s!348c3414-b358-4a50-be83-7d20fcb25770!$6!" _config.butterfly.yml
+
+# 关闭评论
+if [[ $7 == "no_comments" ]]; then
+    sed -i "s/  use: valine,Giscus/  use: /" _config.butterfly.yml
+fi

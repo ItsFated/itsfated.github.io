@@ -14,7 +14,7 @@ if [ -z "$BASH_VAR_APPID" ] || [ -z "$BASH_VAR_APPKEY" ] || \
   exit 1
 fi
 npm install
-./prepare.sh itsfated.top "$BASH_VAR_APPID" "$BASH_VAR_APPKEY" "$BASH_VAR_REPOID" "$BASH_VAR_CATEGORY_ID" "$BASH_VAR_CUSTOM_TEXT"
+./prepare.sh itsfated.top "$BASH_VAR_APPID" "$BASH_VAR_APPKEY" "$BASH_VAR_REPOID" "$BASH_VAR_CATEGORY_ID" "$BASH_VAR_CUSTOM_TEXT" no_comments
 npm run build
 git checkout _config.butterfly.yml _config.yml
 docker compose -f compose.yaml up -d
