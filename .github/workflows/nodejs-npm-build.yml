@@ -10,6 +10,10 @@ on:
         required: false
         type: boolean
         default: false
+      comments:
+        required: false
+        type: string
+        default: "comments"
 
 jobs:
   build:
@@ -45,9 +49,9 @@ jobs:
         run: |
           chmod +x prepare.sh
           if [ "${{ inputs.need_a6 }}" = "true" ]; then
-            ./prepare.sh ${{ inputs.domain }} "$A2" "$A3" "$A4" "$A5" '${{ secrets.A6 }}'
+            ./prepare.sh ${{ inputs.domain }} "$A2" "$A3" "$A4" "$A5" '${{ secrets.A6 }}' "${{ inputs.comments }}"
           else
-            ./prepare.sh ${{ inputs.domain }} "$A2" "$A3" "$A4" "$A5" ""
+            ./prepare.sh ${{ inputs.domain }} "$A2" "$A3" "$A4" "$A5" "" "${{ inputs.comments }}"
           fi
           npm run build
       - uses: actions/upload-artifact@v4

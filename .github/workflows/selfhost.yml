@@ -11,6 +11,7 @@ jobs:
     with:
       domain: itsfated.top
       need_a6: true
+      comments: no_comments
     secrets: inherit
   deploy:
     needs: call-nodejs-npm-build
