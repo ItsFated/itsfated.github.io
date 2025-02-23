@@ -1,5 +1,5 @@
 # 示例：
-# perpare.sh itsfated.top appId appKey repo_id category_id
+# ./prepare.sh itsfated.top appId appKey repo_id category_id ID0123456789 no_comments
 
 # 替换域名
 sed -i "s#url: https://itsfated.github.io/#url: https://$1/#" _config.yml
@@ -22,3 +22,6 @@ if [[ $7 == "no_comments" ]]; then
     sed -i "s/  count: true/  count: /" _config.butterfly.yml
     sed -i "s/  card_post_count: true/  card_post_count: /" _config.butterfly.yml
 fi
+
+# 替换图片路径
+replace_img.sh root
