@@ -24,4 +24,4 @@ if [[ $7 == "no_comments" ]]; then
 fi
 
 # 替换图片路径
-replace_img.sh root
+bash replace_img.sh root
