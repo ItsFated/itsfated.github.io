@@ -2,7 +2,7 @@
 title: Hugo
 date: 2024-07-14 09:51:03
 description: 记录一次搭建Hugo博客系统的配置
-cover: /img/banner.webp
+cover: /img/hugo_guide.webp
 keywords:
   - 博客
   - 网站

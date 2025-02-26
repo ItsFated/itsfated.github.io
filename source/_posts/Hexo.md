@@ -2,7 +2,7 @@
 title: Hexo
 description: 记录一次搭建Hexo博客系统的配置
 date: 2024-07-12 13:00:58
-cover: /img/banner.webp
+cover: /img/hexo_guide.webp
 keywords:
   - 博客
   - 网站

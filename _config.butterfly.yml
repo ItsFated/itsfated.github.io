@@ -16,8 +16,10 @@ menu:
   # List||fas fa-list:
   #   Music: /music/ || fas fa-music
   #   Movie: /movies/ || fas fa-video
-  # Link: /link/ || fas fa-link
-  # About: /about/ || fas fa-heart
+  链接||fas fa-link:
+    主站: https://itsfated.top || fas fa-sun
+    镜像: https://itsfated.github.io || fas fa-moon
+  关于: /about/ || fas fa-info
 
 # Code Blocks (代碼相關)
 # --------------------------------------
@@ -281,8 +283,8 @@ busuanzi:
 # Time difference between publish date and now (網頁運行時間)
 # Formal: Month/Day/Year Time or Year/Month/Day Time
 runtimeshow:
-  enable: false
-  publish_date:
+  enable: true
+  publish_date: 2024/07/12 00:00:00
 
 # Aside widget - Newest Comments
 newest_comments:

@@ -2,7 +2,7 @@
 title: AI服务器
 date: 2025-2-26 21:52:30
 description: 最近AI浪潮很火，我一直想自己搞个自己的服务器来在家玩玩AI看看有什么好玩的
-cover: /img/banner.webp
+cover: /img/ai_home_server.webp
 keywords:
   - AI
   - 服务器
