@@ -13,6 +13,8 @@ menu:
   归档: /archives/ || fas fa-archive
   标签: /tags/ || fas fa-tags
   分类: /categories/ || fas fa-folder-open
+  工具||fas fa-screwdriver-wrench:
+    数学表达式计算器: /tools/数学表达式计算器.html || fas fa-calculator
   # List||fas fa-list:
   #   Music: /music/ || fas fa-music
   #   Movie: /movies/ || fas fa-video

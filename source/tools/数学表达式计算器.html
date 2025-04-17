@@ -1,0 +1,287 @@
+---
+title: 数学表达式计算器
+permalink: /tools/数学表达式计算器.html
+date: 2025-4-17 23:22:21
+description: 数学表达式计算器
+cover: /img/avatar.webp
+keywords:
+  - 计算器
+tags:
+  - 计算器
+categories:
+  - 工具
+---
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数学表达式计算器</title>
+    <style>
+        /* .calculator-body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .calculator-h1 {
+            color: #333;
+            text-align: center;
+        } */
+        .calculator-container {
+            margin: 30px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .calculator-textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            margin-bottom: 15px;
+            font-family: monospace;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        .calculator-controls {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .calculator-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        .calculator-button:hover {
+            background-color: #45a049;
+        }
+        .calculator-label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .calculator-number-input {
+            width: 50px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .calculator-result {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 4px;
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+        .calculator-example {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #f0f8ff;
+            border-left: 4px solid #4CAF50;
+        }
+        .calculator-explanation {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #fffaf0;
+            border-left: 4px solid #ffa500;
+        }
+    </style>
+</head>
+<body class="calculator-body">
+    <h1 class="calculator-h1">数学表达式计算器</h1>
+
+    <div class="calculator-container">
+        <h2>输入表达式</h2>
+        <p>每行输入一个表达式，支持加减乘除、百分比、括号、幂运算和负数</p>
+        <textarea id="calculator-input" class="calculator-textarea" placeholder="例如: 288000 * (1+5%) / (1+2%+5%)"></textarea>
+        <div class="calculator-controls">
+            <button class="calculator-button" onclick="calculateExpressions()">计算</button>
+            <label class="calculator-label">
+                小数位数:
+                <input type="number" id="calculator-decimal-places" class="calculator-number-input" min="0" max="10" value="4">
+            </label>
+        </div>
+        <div class="calculator-result" id="calculator-output"></div>
+    </div>
+
+    <div class="calculator-example">
+        <h2>示例:</h2>
+        <p>288000 * (1+5%) / (1+2%+5%) = 282616.8224</p>
+        <p>288000 * (1+5%)^2 / (1+2%+5%)^2 = 277334.1418</p>
+        <p>288000 * (1+5%)^3 / (1+2%+5%)^3 = 272150.1394</p>
+        <p>288000 * (1+5%)^4 / (1+2%+5%)^4 = 267063.0761</p>
+        <p>288000 * (1+5%)^5 / (1+2%+5%)^5 = 262071.4472</p>
+        <p>-10 * (-5 + 2) = 30.0000</p>
+    </div>
+
+    <div class="calculator-explanation">
+        <h2>运算优先级说明:</h2>
+        <p>1. 括号内的表达式优先计算</p>
+        <p>2. 幂运算 (^) 其次优先</p>
+        <p>3. 乘法 (*) 和除法 (/) 再次优先</p>
+        <p>4. 加法 (+) 和减法 (-) 最后计算</p>
+        <p>5. 百分比 (%) 被视为乘以 0.01</p>
+        <p>6. 支持负数和负数运算</p>
+    </div>
+
+    <script>
+        function tokenize(expr) {
+            // 处理百分比
+            expr = expr.replace(/(\d+(\.\d+)?)%/g, function(match, p1) {
+                return p1 + "*0.01";
+            });
+
+            // 更好地处理负号
+            // 首先替换所有的减号为特殊标记
+            expr = expr.replace(/-/g, " - ");
+
+            // 添加空格使分词更容易
+            expr = expr.replace(/([+*/()^])/g, " $1 ");
+
+            // 分词
+            let tokens = expr.trim().split(/\s+/).filter(token => token.length > 0);
+
+            // 处理负数（把减号和数字合并）
+            const processedTokens = [];
+            for (let i = 0; i < tokens.length; i++) {
+                if (tokens[i] === "-" &&
+                    (i === 0 || tokens[i-1] === "(" || isOperator(tokens[i-1]))) {
+                    // 如果是负号（在表达式开始、左括号后或运算符后）
+                    if (i + 1 < tokens.length && !isNaN(parseFloat(tokens[i+1]))) {
+                        // 合并负号和数字
+                        processedTokens.push("-" + tokens[i+1]);
+                        i++; // 跳过下一个数字
+                    } else {
+                        processedTokens.push(tokens[i]);
+                    }
+                } else {
+                    processedTokens.push(tokens[i]);
+                }
+            }
+
+            return processedTokens;
+        }
+
+        function isOperator(token) {
+            return ["+", "-", "*", "/", "^"].includes(token);
+        }
+
+        function precedence(op) {
+            if (op === "+" || op === "-") return 1;
+            if (op === "*" || op === "/") return 2;
+            if (op === "^") return 3;
+            return 0;
+        }
+
+        function toRPN(tokens) {
+            const output = [];
+            const operators = [];
+
+            for (const token of tokens) {
+                if (!isNaN(parseFloat(token))) {
+                    // 数字
+                    output.push(token);
+                } else if (token === "(") {
+                    // 左括号
+                    operators.push(token);
+                } else if (token === ")") {
+                    // 右括号
+                    while (operators.length > 0 && operators[operators.length - 1] !== "(") {
+                        output.push(operators.pop());
+                    }
+                    operators.pop(); // 弹出左括号
+                } else if (isOperator(token)) {
+                    // 运算符
+                    while (
+                        operators.length > 0 &&
+                        operators[operators.length - 1] !== "(" &&
+                        ((token !== "^" && precedence(operators[operators.length - 1]) >= precedence(token)) ||
+                         (token === "^" && precedence(operators[operators.length - 1]) > precedence(token)))
+                    ) {
+                        output.push(operators.pop());
+                    }
+                    operators.push(token);
+                }
+            }
+
+            // 处理剩余的运算符
+            while (operators.length > 0) {
+                output.push(operators.pop());
+            }
+
+            return output;
+        }
+
+        function evaluateRPN(rpn) {
+            const stack = [];
+
+            for (const token of rpn) {
+                if (!isOperator(token)) {
+                    // 数字
+                    stack.push(parseFloat(token));
+                } else {
+                    // 运算符
+                    const b = stack.pop();
+                    const a = stack.pop();
+
+                    switch (token) {
+                        case "+": stack.push(a + b); break;
+                        case "-": stack.push(a - b); break;
+                        case "*": stack.push(a * b); break;
+                        case "/": stack.push(a / b); break;
+                        case "^": stack.push(Math.pow(a, b)); break;
+                    }
+                }
+            }
+
+            return stack[0];
+        }
+
+        function evaluate(expr) {
+            const tokens = tokenize(expr);
+            const rpn = toRPN(tokens);
+            return evaluateRPN(rpn);
+        }
+
+        function calculateExpressions() {
+            const input = document.getElementById("calculator-input").value;
+            const lines = input.split("\n").filter(line => line.trim().length > 0);
+            const decimalPlaces = parseInt(document.getElementById("calculator-decimal-places").value, 10) || 4;
+
+            let results = "";
+
+            for (const line of lines) {
+                try {
+                    const result = evaluate(line);
+                    // 保留指定的小数位数
+                    const formattedResult = result.toFixed(decimalPlaces);
+                    results += `${line} = ${formattedResult}\n`;
+                } catch (error) {
+                    results += `${line} = 错误: ${error.message}\n`;
+                }
+            }
+
+            document.getElementById("calculator-output").textContent = results;
+        }
+
+        // 预填充示例表达式
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     document.getElementById("calculator-input").value = "288000 * (1+5%) / (1+2%+5%)\n288000 * (1+5%)^2 / (1+2%+5%)^2\n288000 * (1+5%)^3 / (1+2%+5%)^3\n288000 * (1+5%)^4 / (1+2%+5%)^4\n288000 * (1+5%)^5 / (1+2%+5%)^5\n-10 * (-5 + 2)";
+        // });
+    </script>
+</body>
+</html>
