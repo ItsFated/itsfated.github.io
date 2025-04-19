@@ -17,26 +17,8 @@ categories:
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <title>数学表达式计算器</title> -->
+    <title>数学表达式计算器</title>
     <style>
-        /* .calculator-body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            line-height: 1.6;
-        }
-        .calculator-h1 {
-            color: #333;
-            text-align: center;
-        } */
-        .calculator-container {
-            margin: 30px 0;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-        }
         .calculator-textarea {
             width: 100%;
             height: 150px;
@@ -44,7 +26,7 @@ categories:
             margin-bottom: 15px;
             font-family: monospace;
             font-size: 14px;
-            border: 1px solid #ccc;
+            border: 1px solid;
             border-radius: 4px;
             resize: vertical;
         }
@@ -75,68 +57,48 @@ categories:
         .calculator-number-input {
             width: 50px;
             padding: 5px;
-            border: 1px solid #ccc;
+            border: 1x solid;
             border-radius: 4px;
         }
         .calculator-result {
             margin-top: 20px;
-            border: 1px solid #ddd;
+            border: 1px solid;
             padding: 15px;
-            background-color: #fff;
             border-radius: 4px;
             white-space: pre-wrap;
             font-family: monospace;
         }
-        .calculator-example {
-            margin-top: 30px;
-            padding: 15px;
-            background-color: #f0f8ff;
-            border-left: 4px solid #4CAF50;
-        }
-        .calculator-explanation {
-            margin-top: 30px;
-            padding: 15px;
-            background-color: #fffaf0;
-            border-left: 4px solid #ffa500;
-        }
     </style>
 </head>
-<body class="calculator-body">
-    <!-- <h1 class="calculator-h1">数学表达式计算器</h1> -->
-
-    <div class="calculator-container">
-        <h2>输入表达式</h2>
-        <p>每行输入一个表达式，支持加减乘除、百分比、括号、幂运算和负数</p>
-        <textarea id="calculator-input" class="calculator-textarea" placeholder="例如: 288000 * (1+5%) / (1+2%+5%)"></textarea>
-        <div class="calculator-controls">
-            <button class="calculator-button" onclick="calculateExpressions()">计算</button>
-            <label class="calculator-label">
-                小数位数:
-                <input type="number" id="calculator-decimal-places" class="calculator-number-input" min="0" max="10" value="4">
-            </label>
-        </div>
-        <div class="calculator-result" id="calculator-output"></div>
+<body>
+    <h2>输入表达式</h2>
+    <p>每行输入一个表达式，支持加减乘除、百分比、括号、幂运算和负数</p>
+    <textarea id="calculator-input" class="calculator-textarea" placeholder="例如: 288000 * (1+5%) / (1+2%+5%)"></textarea>
+    <div class="calculator-controls">
+        <button class="calculator-button" onclick="calculateExpressions()">计算</button>
+        <label class="calculator-label">
+            小数位数:
+            <input type="number" id="calculator-decimal-places" class="calculator-number-input" min="0" max="10" value="4">
+        </label>
     </div>
+    <div class="calculator-result" id="calculator-output"></div>
 
-    <div class="calculator-example">
-        <h2>示例:</h2>
-        <p>288000 * (1+5%) / (1+2%+5%) = 282616.8224</p>
-        <p>288000 * (1+5%)^2 / (1+2%+5%)^2 = 277334.1418</p>
-        <p>288000 * (1+5%)^3 / (1+2%+5%)^3 = 272150.1394</p>
-        <p>288000 * (1+5%)^4 / (1+2%+5%)^4 = 267063.0761</p>
-        <p>288000 * (1+5%)^5 / (1+2%+5%)^5 = 262071.4472</p>
-        <p>-10 * (-5 + 2) = 30.0000</p>
-    </div>
+    <h2>示例:</h2>
+    <ul>
+    <li>288000 * (1+5%) / (1+2%+5%) = 282616.8224</li>
+    <li>288000 * (1+5%)^2 / (1+2%+5%)^2 = 277334.1418</li>
+    <li>-10 * (-5 + 2) = 30.0000</li>
+    </ul>
 
-    <div class="calculator-explanation">
-        <h2>运算优先级说明:</h2>
-        <p>1. 括号内的表达式优先计算</p>
-        <p>2. 幂运算 (^) 其次优先</p>
-        <p>3. 乘法 (*) 和除法 (/) 再次优先</p>
-        <p>4. 加法 (+) 和减法 (-) 最后计算</p>
-        <p>5. 百分比 (%) 被视为乘以 0.01</p>
-        <p>6. 支持负数和负数运算</p>
-    </div>
+    <h2>说明:</h2>
+    <ul>
+    <li>括号内的表达式优先计算</li>
+    <li>幂运算 (^) 其次优先</li>
+    <li>乘法 (*) 和除法 (/) 再次优先</li>
+    <li>加法 (+) 和减法 (-) 最后计算</li>
+    <li>百分比 (%) 被视为乘以 0.01</li>
+    <li>支持负数和负数运算</li>
+    </ul>
 
     <script>
         function tokenize(expr) {
