@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>微笑汇联产品介绍</title>
 </head>
-<body class="calculator-body">
+<body class="calculator-body standalone">
 <h1>产品汇总</h1>
 <h2>公司概览</h2>
 <p>深圳市微笑汇联技术有限公司专注智能穿戴、智能终端与物联网软硬件整体解决方案，聚焦“健康监测 + 安全守护 + 娱乐互联”三大方向，产品覆盖医疗级血压手表、学生安全手表、运动健康手环、来鱼警报器、智能投影及游戏娱乐终端等场景，形成多层次可持续迭代的产品矩阵。</p>
@@ -47,7 +47,35 @@
     .product {padding:1.1rem;}
   }
 </style>
-<style> #page-header,#nav,#rightside,#aside_content,#breadcrumb{display:none!important;} #body-wrap{padding-top:0!important;} .layout_page,#content-inner{margin:0!important;max-width:none!important;width:100%;} .post-title, .page-title {display:none!important;} </style>
+<style>
+  /* 独立页面精简覆盖：仅在 body.standalone 作用，移除头部/侧栏/底部/评论并消除空白 */
+  body.standalone #page-header,
+  body.standalone #nav,
+  body.standalone #rightside,
+  body.standalone #aside-content,
+  body.standalone #aside_content,
+  body.standalone #breadcrumb,
+  body.standalone #footer,
+  body.standalone #page-footer,
+  body.standalone #post-comment,
+  body.standalone #comments,
+  body.standalone #comment,
+  body.standalone .post-meta,
+  body.standalone .widget,
+  body.standalone .comments,
+  body.standalone .reward-container {display:none!important;}
+  body.standalone #body-wrap {padding-top:0!important;}
+  body.standalone .layout,
+  body.standalone .layout_page,
+  body.standalone #content-inner,
+  body.standalone .main-inner,
+  body.standalone #content-inner > #post,
+  body.standalone #content-inner > main {margin:0!important; max-width:none!important; width:135%!important; float:none!important; display:block!important; gap:0!important;}
+  body.standalone .post-title, body.standalone .page-title {display:none!important;}
+  /* 限制产品模块宽度 80% 并居中；小屏回退100% */
+  body.standalone {width:80%!important; max-width:1200px; margin:2.5rem auto!important;}
+  @media (max-width:900px){body.standalone .product {width:92%!important; margin:1.8rem auto!important;}}
+</style>
 <!-- 展锐 W307 -->
 <section class="product" id="w307">
   <div class="product-header">
