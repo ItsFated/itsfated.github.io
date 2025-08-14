@@ -4,8 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>微笑汇联产品介绍</title>
+    <!-- 独立运行所需的最小样式：不依赖主题，控制容器 80%/100% -->
+    <style>
+      :root { color-scheme: light; }
+      * { box-sizing: border-box; }
+      html, body { margin:0; padding:0; }
+      body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif; line-height:1.6; color:#222; background:#fff; }
+      .page { width:80%; max-width:1200px; margin:2rem auto; }
+      @media (max-width:900px){ .page { width:100%; margin:1rem auto; padding:0 4%; } }
+    </style>
 </head>
-<body class="calculator-body standalone">
+<body>
+  <div class="page">
 <h1>产品汇总</h1>
 <h2>公司概览</h2>
 <p>深圳市微笑汇联技术有限公司专注智能穿戴、智能终端与物联网软硬件整体解决方案，聚焦“健康监测 + 安全守护 + 娱乐互联”三大方向，产品覆盖医疗级血压手表、学生安全手表、运动健康手环、来鱼警报器、智能投影及游戏娱乐终端等场景，形成多层次可持续迭代的产品矩阵。</p>
@@ -16,11 +26,12 @@
   <li><a href="#w307">展锐 W307 血压穿戴手表（医疗器械）</a>：气泵血压 & ECG & 情绪与睡眠全栈健康监测。</li>
   <li><a href="#w217">展锐 W217 学生手表</a>：校园安全与通讯管理平台型终端。</li>
   <li><a href="#fish-alarm">钓鱼来鱼警报器</a>：实时鱼讯预警，多通道通知。</li>
-  <li><a href="#projector">智能投影仪</a>：自动成像与多形态投影的家庭影音中心。</li>
-  <li><a href="#game-console">便携游戏掌机</a>：怀旧与畅玩结合的便携娱乐硬件。</li>
+  <li><a href="#projector">MTK6592 智能投影仪</a>：自动成像与多形态投影的家庭影音中心。</li>
+  <li><a href="#game-console">MTK6592 便携游戏掌机</a>：怀旧与畅玩结合的便携娱乐硬件。</li>
   <li><a href="#bt-band">杰理7013 低功耗蓝牙手环 / 手表</a>：全天候健康与运动伴侣。</li>
   <li><a href="#w217-badge">展锐 W217 定位工牌</a>：RTK 高精度室外/园区人员定位与状态指示。</li>
   <li><a href="#recorder-8541e">展讯 8541E 执法记录仪</a>：高清夜视、长续航、全天候取证。</li>
+  <li><a href="#ble-beacon">蓝牙信标</a>：超低功耗、远距离广播、IP68 工业级防护。</li>
 </ul>
 <p>以下章节给出各产品的简介与功能详情，可按需快速定位。</p>
 <hr/>
@@ -47,35 +58,6 @@
     .product-header {flex-direction:column;}
     .product {padding:1.1rem;}
   }
-</style>
-<style>
-  /* 独立页面精简覆盖：仅在 body.standalone 作用，移除头部/侧栏/底部/评论并消除空白 */
-  body.standalone #page-header,
-  body.standalone #nav,
-  body.standalone #rightside,
-  body.standalone #aside-content,
-  body.standalone #aside_content,
-  body.standalone #breadcrumb,
-  body.standalone #footer,
-  body.standalone #page-footer,
-  body.standalone #post-comment,
-  body.standalone #comments,
-  body.standalone #comment,
-  body.standalone .post-meta,
-  body.standalone .widget,
-  body.standalone .comments,
-  body.standalone .reward-container {display:none!important;}
-  body.standalone #body-wrap {padding-top:0!important;}
-  body.standalone .layout,
-  body.standalone .layout_page,
-  body.standalone #content-inner,
-  body.standalone .main-inner,
-  body.standalone #content-inner > #post,
-  body.standalone #content-inner > main {margin:0!important; max-width:none!important; width:135%!important; float:none!important; display:block!important; gap:0!important;}
-  body.standalone .post-title, body.standalone .page-title {display:none!important;}
-  /* 限制产品模块宽度 80% 并居中；小屏回退100% */
-  body.standalone {width:80%!important; max-width:1200px; margin:2.5rem auto!important;}
-  @media (max-width:900px){body.standalone .product {width:92%!important; margin:1.8rem auto!important;}}
 </style>
 <!-- 展锐 W307 -->
 <section class="product" id="w307">
@@ -157,11 +139,11 @@
   </div>
 </section>
 
-<!-- 智能投影仪 -->
+<!-- MTK6592 智能投影仪 -->
 <section class="product" id="projector">
   <div class="product-header">
     <div class="product-image">
-      <img src="/img/smile_morejoy_projector.jpg" alt="智能投影仪" loading="lazy" />
+      <img src="/img/smile_morejoy_projector.jpg" alt="MTK6592 智能投影仪" loading="lazy" />
     </div>
     <div class="product-brief">
       <h3>MTK6592 智能投影仪</h3>
@@ -182,11 +164,11 @@
   </div>
 </section>
 
-<!-- 游戏掌机 -->
+<!-- MTK6592 便携游戏掌机 -->
 <section class="product" id="game-console">
   <div class="product-header">
     <div class="product-image">
-      <img src="/img/smile_hand_games.png" alt="游戏掌机" loading="lazy" />
+      <img src="/img/smile_hand_games.png" alt="MTK6592 便携游戏掌机" loading="lazy" />
     </div>
     <div class="product-brief">
       <h3>MTK6592 便携游戏掌机</h3>
@@ -286,6 +268,34 @@
   </div>
 </section>
 
+<!-- 蓝牙信标 -->
+<section class="product" id="ble-beacon">
+  <div class="product-header">
+    <div class="product-image">
+      <img src="/img/smile_ble_ibeacon.png" alt="蓝牙信标" loading="lazy" />
+    </div>
+    <div class="product-brief">
+      <h3>蓝牙信标</h3>
+      <div class="tags">
+        <span>超低功耗</span><span>iBeacon</span><span>可连配置</span><span>OTA 升级</span><span>IP68</span><span>宽温</span>
+      </div>
+      <p><strong>产品简介：</strong>面向室内定位、资产管理、巡更签到等场景的工业级 BLE 信标设备。采用超低功耗设计与可连接固件，支持 iBeacon 及自定义广播参数，配合 OTA 远程维护，满足长期部署与规模化运维需求。</p>
+    </div>
+  </div>
+  <div class="features">
+    <h4 class="section-title">功能详情</h4>
+    <ul>
+      <li>🔋 <span>超低功耗设计：</span>两节锂氩电池，在 0dBm、1000ms 广播间隔下续航可达 5 年。</li>
+      <li>📡 <span>远距离广播：</span>空旷视距最远约 100 米，兼容 BLE 4.2 / 5.0 多协议栈。</li>
+      <li>🧭 <span>iBeacon 与自定义参数：</span>原生支持 iBeacon 格式，并可通过手机 APP 灵活配置广播内容与间隔（可连接型固件）。</li>
+      <li>🔄 <span>OTA 固件升级：</span>支持在线升级，便于远程维护与功能扩展。</li>
+      <li>🛡️ <span>IP68 工业防护：</span>防尘防水，适应 −40℃ ~ 85℃ 宽温环境，户外稳定运行。</li>
+      <li>🧷 <span>多样安装方式：</span>提供 3M 胶或螺钉固定，快速部署于墙体、设备或资产上。</li>
+    </ul>
+  </div>
+</section>
+
 <p style="font-size:.75rem;color:#888;">免责声明：部分功能受版本/地区/配套服务或认证进度影响，实际以量产配置与官方公告为准。</p>
+  </div>
 </body>
 </html>
