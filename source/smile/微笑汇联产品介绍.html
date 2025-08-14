@@ -9,54 +9,277 @@
       :root { color-scheme: light; }
       * { box-sizing: border-box; }
       html, body { margin:0; padding:0; }
-      body { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif; line-height:1.6; color:#222; background:#fff; }
+      body { 
+        font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif; 
+        line-height:1.6; 
+        color:#222; 
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+      }
       .page { width:80%; max-width:1200px; margin:2rem auto; }
       @media (max-width:900px){ .page { width:100%; margin:1rem auto; padding:0 4%; } }
+      
+      /* 公司介绍卡片样式 */
+      .company-intro {
+        background: #fff;
+        border-radius: 16px;
+        padding: 2rem;
+        margin: 2rem 0;
+        box-shadow: 0 4px 20px rgba(0,0,0,.1);
+        border: 1px solid rgba(0,0,0,.06);
+      }
+      .company-intro h1, .company-intro h2 {
+        color: #2c3e50;
+        margin-top: 0;
+      }
+      .company-intro h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      /* 现代化产品列表 */
+      .product-overview-list {
+        list-style: none;
+        padding: 0;
+        display: grid;
+        gap: 1rem;
+        margin: 1.5rem 0;
+      }
+      .product-overview-list li {
+        background: rgba(255,255,255,.95);
+        border-radius: 12px;
+        padding: 1.2rem;
+        box-shadow: 0 2px 12px rgba(0,0,0,.08);
+        transition: all 0.3s ease;
+        border-left: 4px solid transparent;
+      }
+      .product-overview-list li:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 24px rgba(0,0,0,.12);
+        border-left-color: #667eea;
+      }
+      .product-overview-list li a {
+        text-decoration: none;
+        color: #2c3e50;
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
+      .product-overview-list li a:hover {
+        color: #667eea;
+      }
+      .product-description {
+        color: #666;
+        margin-top: 0.5rem;
+        font-size: 0.95rem;
+      }
     </style>
 </head>
 <body>
-  <div class="page">
-<h1>产品汇总</h1>
-<h2>公司概览</h2>
-<p>深圳市微笑汇联技术有限公司专注智能穿戴、智能终端与物联网软硬件整体解决方案，聚焦“健康监测 + 安全守护 + 娱乐互联”三大方向，产品覆盖医疗级血压手表、学生安全手表、运动健康手环、来鱼警报器、智能投影及游戏娱乐终端等场景，形成多层次可持续迭代的产品矩阵。</p>
+    <div class="page">
+<div class="company-intro">
+  <h1>🏢 产品汇总</h1>
+  <h2>🌟 公司概览</h2>
+  <p>深圳市微笑汇联技术有限公司专注智能穿戴、智能终端与物联网软硬件整体解决方案，聚焦"健康监测 + 安全守护 + 娱乐互联"三大方向，产品覆盖医疗级血压手表、学生安全手表、运动健康手环、来鱼警报器、智能投影及游戏娱乐终端等场景，形成多层次可持续迭代的产品矩阵。</p>
 
-<h2>产品矩阵总览</h2>
-<p>当前主要产品（按应用场景分类）：</p>
-<ul class="product-overview-list">
-  <li><a href="#w307">展锐 W307 血压穿戴手表（医疗器械）</a>：气泵血压 & ECG & 情绪与睡眠全栈健康监测。</li>
-  <li><a href="#w217">展锐 W217 学生手表</a>：校园安全与通讯管理平台型终端。</li>
-  <li><a href="#fish-alarm">钓鱼来鱼警报器</a>：实时鱼讯预警，多通道通知。</li>
-  <li><a href="#projector">MTK6592 智能投影仪</a>：自动成像与多形态投影的家庭影音中心。</li>
-  <li><a href="#game-console">MTK6592 便携游戏掌机</a>：怀旧与畅玩结合的便携娱乐硬件。</li>
-  <li><a href="#bt-band">杰理7013 低功耗蓝牙手环 / 手表</a>：全天候健康与运动伴侣。</li>
-  <li><a href="#w217-badge">展锐 W217 定位工牌</a>：RTK 高精度室外/园区人员定位与状态指示。</li>
-  <li><a href="#recorder-8541e">展讯 8541E 执法记录仪</a>：高清夜视、长续航、全天候取证。</li>
-  <li><a href="#ble-beacon">蓝牙信标</a>：超低功耗、远距离广播、IP68 工业级防护。</li>
-</ul>
-<p>以下章节给出各产品的简介与功能详情，可按需快速定位。</p>
-<hr/>
+  <h2>📋 产品矩阵总览</h2>
+  <p>当前主要产品（按应用场景分类）：</p>
+  <ul class="product-overview-list">
+    <li>
+      <a href="#w307">🩺 展锐 W307 血压穿戴手表（医疗器械）</a>
+      <div class="product-description">气泵血压 & ECG & 情绪与睡眠全栈健康监测</div>
+    </li>
+    <li>
+      <a href="#w217">👶 展锐 W217 学生手表</a>
+      <div class="product-description">校园安全与通讯管理平台型终端</div>
+    </li>
+    <li>
+      <a href="#fish-alarm">🎣 钓鱼来鱼警报器</a>
+      <div class="product-description">实时鱼讯预警，多通道通知</div>
+    </li>
+    <li>
+      <a href="#projector">📽️ MTK6592 智能投影仪</a>
+      <div class="product-description">自动成像与多形态投影的家庭影音中心</div>
+    </li>
+    <li>
+      <a href="#game-console">🎮 MTK6592 便携游戏掌机</a>
+      <div class="product-description">怀旧与畅玩结合的便携娱乐硬件</div>
+    </li>
+    <li>
+      <a href="#bt-band">⌚ 杰理7013 低功耗蓝牙手环 / 手表</a>
+      <div class="product-description">全天候健康与运动伴侣</div>
+    </li>
+    <li>
+      <a href="#w217-badge">🏷️ 展锐 W217 定位工牌</a>
+      <div class="product-description">RTK 高精度室外/园区人员定位与状态指示</div>
+    </li>
+    <li>
+      <a href="#recorder-8541e">📹 展讯 8541E 执法记录仪</a>
+      <div class="product-description">高清夜视、长续航、全天候取证</div>
+    </li>
+    <li>
+      <a href="#ble-beacon">📡 蓝牙信标</a>
+      <div class="product-description">超低功耗、远距离广播、IP68 工业级防护</div>
+    </li>
+  </ul>
+  <p>以下章节给出各产品的简介与功能详情，可按需快速定位。</p>
+</div>
+<hr style="border: none; height: 2px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); margin: 3rem 0; border-radius: 1px;"/>
 
-<h1>产品详细介绍</h1>
+<h1 style="text-align: center; color: #2c3e50; font-size: 2rem; margin: 3rem 0;">📦 产品详细介绍</h1>
 
 <style>
-  .product {margin: 2.5rem 0; border: 1px solid #eee; border-radius: 12px; padding: 1.5rem; background:#fff; box-shadow:0 4px 12px rgba(0,0,0,.04);} 
-  .product-header {display:flex; flex-wrap:wrap; gap:1.25rem; align-items:stretch;}
-  .product-header .product-image {flex:1 1 260px; max-width:360px; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,#f5f7fa,#eef2f6); border-radius:10px; overflow:hidden;}
-  .product-header .product-image img {width:100%; height:auto; object-fit:cover;}
-  .product-header .product-brief {flex:2 1 300px; display:flex; flex-direction:column; gap:.75rem;}
-  .product-brief h3 {margin:0; font-size:1.35rem;}
-  .tags {font-size:.85rem; color:#666; display:flex; flex-wrap:wrap; gap:.5rem;}
-  .tags span {background:#f0f3f8; padding:.3rem .65rem; border-radius:20px;}
-  .features {margin-top:1rem; padding:1rem 1.25rem; background:#fafbfc; border-radius:10px; display:grid; gap:.5rem;}
-  .features li {list-style:none; position:relative; padding-left:0; line-height:1.5;}
-  .features ul {margin:0; padding:0;}
-  .features li {text-indent:0;}
-  .features li span {font-weight:500;}
-  .section-title {margin-top:0; font-size:1.1rem; color:#222; position:relative;}
-  .section-title:after {content:""; position:absolute; left:0; bottom:-6px; width:60px; height:3px; background:#1e88e5; border-radius:2px;}
+  /* Butterfly 风格卡片样式 */
+  .product {
+    margin: 2rem 0; 
+    border-radius: 16px; 
+    padding: 0; 
+    background: #fff; 
+    box-shadow: 0 2px 16px rgba(0,0,0,.08);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,.06);
+  }
+  .product:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,.12);
+    transform: translateY(-2px);
+  }
+  
+  .product-header {
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 0; 
+    align-items: stretch;
+  }
+  
+  .product-header .product-image {
+    flex: 1 1 280px; 
+    max-width: 400px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 2rem;
+    position: relative;
+  }
+  .product-header .product-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,.1) 0%, rgba(255,255,255,.05) 100%);
+  }
+  
+  .product-header .product-image img {
+    max-width: 100%; 
+    height: auto; 
+    display: block; 
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.15);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .product-header .product-brief {
+    flex: 2 1 320px; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 1rem;
+    padding: 2rem;
+    background: #fff;
+  }
+  
+  .product-brief h3 {
+    margin: 0; 
+    font-size: 1.5rem;
+    color: #2c3e50;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  
+  .tags {
+    font-size: .85rem; 
+    color: #666; 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: .6rem;
+    margin: .5rem 0;
+  }
+  .tags span {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: #fff;
+    padding: .4rem .8rem; 
+    border-radius: 15px;
+    font-weight: 500;
+    font-size: .8rem;
+    box-shadow: 0 2px 8px rgba(240,147,251,.3);
+  }
+  
+  .product-brief p {
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  .features {
+    margin: 0;
+    padding: 2rem; 
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    display: grid; 
+    gap: 1.2rem;
+  }
+  
+  .features li {
+    list-style: none; 
+    position: relative; 
+    padding: 1rem 1.2rem;
+    line-height: 1.6;
+    background: rgba(255,255,255,.8);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    transition: all 0.2s ease;
+    margin-bottom: 0.8rem;
+  }
+  .features li:hover {
+    background: rgba(255,255,255,.95);
+    transform: translateX(5px);
+  }
+  
+  .features ul {margin: 0; padding: 0;}
+  .features li span {font-weight: 600; color: #2c3e50;}
+  
+  .section-title {
+    margin: 0 0 1.5rem 0; 
+    font-size: 1.3rem; 
+    color: #2c3e50; 
+    position: relative;
+    font-weight: 600;
+    padding-bottom: .5rem;
+  }
+  .section-title:after {
+    content: ""; 
+    position: absolute; 
+    left: 0; 
+    bottom: 0; 
+    width: 50px; 
+    height: 3px; 
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 2px;
+  }
+  
   @media (max-width:720px){
-    .product-header {flex-direction:column;}
-    .product {padding:1.1rem;}
+    .product-header {flex-direction: column;}
+    .product {margin: 1.5rem 0;}
+    .product-header .product-image {max-width: none;}
+    .product-header .product-brief {padding: 1.5rem;}
+    .features {padding: 1.5rem;}
   }
 </style>
 <!-- 展锐 W307 -->
