@@ -25,12 +25,12 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           # If your repository depends on submodule, please see: https://github.com/actions/checkout
           submodules: recursive
-      - name: Use Node.js 22.4.1
+      - name: Use Node.js 24
         uses: actions/setup-node@v4
         with:
-          # Examples: 20, 18.19, >=16.20.2, lts/Iron, lts/Hydrogen, *, latest, current, node
-          # Ref: https://github.com/actions/setup-node#supported-version-syntax
-          node-version: "22.4.1"
+          # hexo 8 依赖 strip-ansi@7（纯 ESM），需要支持 require(esm) 的 Node：
+          # >=20.19 或 >=22.12；22.4.1 会 FATAL: ERR_REQUIRE_ESM
+          node-version: "24"
       - name: Cache NPM dependencies
         uses: actions/cache@v4
         with:
